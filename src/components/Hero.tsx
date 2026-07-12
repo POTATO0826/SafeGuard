@@ -100,9 +100,9 @@ export default function Hero({
                 color: "#101c66",
                 size: 32,
               }}
-              oceanColor="rgba(255,255,255,0)"
-              outlineColor="rgba(51,71,224,0.4)"
-              graticuleColor="rgba(51,71,224,0.07)"
+              oceanColor="rgba(51,71,224,0.06)"
+              outlineColor="rgba(51,71,224,0.55)"
+              graticuleColor="rgba(51,71,224,0.12)"
               showGrid
               showOutline
             />

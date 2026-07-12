@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import DitherArt from "@/components/DitherArt";
-import { ringsPainter, shieldPainter, networkPainter, twinPainter } from "@/lib/painters";
+import { ringsPainter, shieldPainter, twinPainter, walletPainter } from "@/lib/painters";
 import SpiralCoins from "@/components/SpiralCoins";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -10,7 +10,7 @@ const STEPS = [
     n: "01",
     title: "Connect your wallet",
     body: "Read-only. SafeSend sees your address and balance — never your keys.",
-    painter: networkPainter,
+    painter: walletPainter,
   },
   {
     n: "02",
@@ -61,7 +61,7 @@ export default function HowItWorks() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ delay: i * 0.12, duration: 0.7, ease: EASE }}
-            className="group relative border-hairline p-6 not-last:border-b sm:not-last:border-b-0 sm:odd:border-r lg:not-last:border-r"
+            className="group relative border-hairline bg-white p-6 not-last:border-b sm:not-last:border-b-0 sm:odd:border-r lg:not-last:border-r"
           >
             {/* connecting arrow */}
             {i < STEPS.length - 1 && (
@@ -75,7 +75,7 @@ export default function HowItWorks() {
                 →
               </motion.span>
             )}
-            <div className="relative mb-5 h-28 w-28 transition-transform duration-300 group-hover:scale-105">
+            <div className="relative mb-5 h-28 w-28 bg-white transition-transform duration-300 group-hover:scale-105">
               <DitherArt painter={s.painter} pixelSize={2} timeScale={0.7} />
             </div>
             <p className="font-mono text-[11px] text-blue">{s.n}</p>

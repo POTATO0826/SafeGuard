@@ -3,7 +3,7 @@ import TextPath from "@/components/originkit/TextPath";
 /** OriginKit TextPath — extra description flowing along a wave between sections. */
 export default function WaveBand() {
   return (
-    <div className="border-y border-hairline bg-blue-faint">
+    <div className="border-y border-hairline bg-white">
       <TextPath
         text="CHECK THE WALLET BEFORE THE WALLET CHECKS OUT"
         separator="  ✳  "

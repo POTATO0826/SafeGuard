@@ -673,7 +673,7 @@ export default function TxCheck({ connected, onNeedConnect }: { connected: boole
             className="p-5 sm:p-6"
           >
             {/* connected wallet */}
-            <div className="mb-5 flex items-center justify-between border border-hairline bg-blue-faint px-4 py-3">
+            <div className="mb-5 flex items-center justify-between border border-hairline bg-white px-4 py-3">
               <div>
                 <p className="font-mono text-[10px] tracking-[0.18em] text-blue-mid uppercase">
                   Connected wallet

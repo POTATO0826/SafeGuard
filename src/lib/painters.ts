@@ -107,6 +107,58 @@ export const networkPainter: Painter = (ctx, w, h, t) => {
   }
 };
 
+/** Wallet with a pulsing connection signal — the read-only connect step. */
+export const walletPainter: Painter = (ctx, w, h, t) => {
+  const s = Math.min(w, h);
+  const x = w * 0.14;
+  const y = h * 0.31;
+  const ww = w * 0.66;
+  const wh = h * 0.45;
+  const radius = s * 0.07;
+
+  // A soft tonal field gives the wallet a deliberate dithered body.
+  const body = ctx.createLinearGradient(x, y, x + ww, y + wh);
+  body.addColorStop(0, "#202020");
+  body.addColorStop(0.58, "#777777");
+  body.addColorStop(1, "#151515");
+  ctx.fillStyle = body;
+  ctx.beginPath();
+  ctx.roundRect(x, y, ww, wh, radius);
+  ctx.fill();
+
+  // Top fold makes the silhouette read immediately as a wallet.
+  ctx.strokeStyle = "#000000";
+  ctx.lineWidth = Math.max(1.5, s * 0.035);
+  ctx.beginPath();
+  ctx.moveTo(x + radius, y + wh * 0.17);
+  ctx.lineTo(x + ww * 0.76, y + wh * 0.17);
+  ctx.stroke();
+
+  // Clasp and status light.
+  ctx.fillStyle = "#050505";
+  ctx.beginPath();
+  ctx.roundRect(x + ww * 0.61, y + wh * 0.38, ww * 0.32, wh * 0.34, radius * 0.5);
+  ctx.fill();
+  ctx.fillStyle = "#ffffff";
+  ctx.beginPath();
+  ctx.arc(x + ww * 0.72, y + wh * 0.55, s * 0.025, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Connection arcs travel outward without obscuring the wallet.
+  const pulse = (t * 0.55) % 1;
+  const sx = x + ww * 0.7;
+  const sy = y * 0.83;
+  ctx.lineCap = "round";
+  for (let i = 0; i < 3; i++) {
+    const phase = (pulse + i / 3) % 1;
+    ctx.strokeStyle = `rgba(0,0,0,${0.95 - phase * 0.55})`;
+    ctx.lineWidth = Math.max(1.2, s * 0.025);
+    ctx.beginPath();
+    ctx.arc(sx, sy, s * (0.08 + phase * 0.23), Math.PI * 1.1, Math.PI * 1.9);
+    ctx.stroke();
+  }
+};
+
 /** Coin disc with a currency glyph. */
 export function coinPainter(glyph: string): Painter {
   return (ctx, w, h, t) => {
