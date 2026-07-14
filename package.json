@@ -4,7 +4,9 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "bun run scripts/dev.ts",
+    "dev:web": "vite",
+    "dev:news": ".venv/bin/python backend/server.py",
     "build": "vite build",
     "typecheck": "tsc --noEmit",
     "preview": "vite preview"

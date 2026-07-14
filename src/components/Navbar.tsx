@@ -6,15 +6,17 @@ import { CONNECTED_WALLET, shortAddress } from "@/lib/analysis";
 interface Props {
   connected: boolean;
   onConnect: () => void;
+  currentPage?: "home" | "insights";
 }
 
 const LINKS = [
   { label: "How It Works", href: "#how-it-works" },
   { label: "Security Sources", href: "#sources" },
   { label: "About", href: "#threats" },
+  { label: "Insights", href: "#/insights" },
 ];
 
-export default function Navbar({ connected, onConnect }: Props) {
+export default function Navbar({ connected, onConnect, currentPage = "home" }: Props) {
   return (
     <motion.header
       initial={{ y: -56, opacity: 0 }}
@@ -31,15 +33,20 @@ export default function Navbar({ connected, onConnect }: Props) {
         </a>
 
         <nav className="hidden items-center gap-8 md:flex">
-          {LINKS.map((l) => (
-            <a
-              key={l.label}
-              href={l.href}
-              className="text-[13px] font-medium text-blue-ink/70 transition-colors hover:text-blue"
-            >
-              {l.label}
-            </a>
-          ))}
+          {LINKS.map((l) => {
+            const active = l.href === "#/insights" && currentPage === "insights";
+            return (
+              <a
+                key={l.label}
+                href={l.href}
+                className={`text-[13px] font-medium transition-colors hover:text-blue ${
+                  active ? "text-blue" : "text-blue-ink/70"
+                }`}
+              >
+                {l.label}
+              </a>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-3">

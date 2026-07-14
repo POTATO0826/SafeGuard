@@ -42,3 +42,10 @@ Images/
 # verification screenshots
 scripts/shots/
 
+# Python news service
+.venv/
+__pycache__/
+*.py[cod]
+backend/data/news-cache.json
+backend/data/news-cache.tmp
+
